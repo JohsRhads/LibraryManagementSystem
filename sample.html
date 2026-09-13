@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Category Management</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<body class="bg-light">
+<div class="container-lg py-5">
+
+  <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+    <div class="bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
+      <i class="bi bi-tags fs-4"></i>
+    </div>
+    <div>
+      <h1 class="h3 mb-0">Category Management</h1>
+      <small class="text-muted">Create and organize the categories used to classify incoming complaints.</small>
+    </div>
+  </div>
+
+  <div id="category-alert"></div>
+
+  <!-- Add Category -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-white fw-semibold">
+      <i class="bi bi-plus-circle text-success me-2"></i>Add Category
+    </div>
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-8">
+          <label for="category-name" class="form-label">Category Name</label>
+          <input type="text" class="form-control" id="category-name" placeholder="e.g. Noise complaint">
+        </div>
+        <div class="col-md-4 d-grid">
+          <button class="btn btn-success" id="btn-add-category">
+            <i class="bi bi-plus-lg me-1"></i>Add Category
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category List -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white fw-semibold">
+      <i class="bi bi-list-ul me-2"></i>Category List
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped mb-0 align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th style="width:10%;">ID</th>
+              <th>Category Name</th>
+              <th style="width:20%;" class="text-end">Action</th>
+            </tr>
+          </thead>
+          <tbody id="category-tbody">
+            <tr>
+              <td colspan="3" class="text-center text-muted py-5">
+                <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                No categories yet — add one above to get started.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Update Modal -->
+<div class="modal fade" id="updateCategoryModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="bi bi-pencil-square me-1"></i>Update Category</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="update-category-id">
+        <label for="update-category-name" class="form-label">Category Name</label>
+        <input type="text" class="form-control" id="update-category-name">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" id="btn-save-category">
+          <i class="bi bi-save me-1"></i>Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title"><i class="bi bi-trash me-1"></i>Confirm Delete</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this category?</p>
+        <table class="table table-sm">
+          <tr>
+            <td><strong>Category ID</strong></td>
+            <td id="delete-category-id"></td>
+          </tr>
+          <tr>
+            <td><strong>Category Name</strong></td>
+            <td id="delete-category-name"></td>
+          </tr>
+        </table>
+        <div id="delete-category-message"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-danger" id="btn-confirm-delete-category">
+          <i class="bi bi-trash me-1"></i>Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
