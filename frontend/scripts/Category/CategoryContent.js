@@ -18,7 +18,7 @@ const renderCategoryPage = () => {
 
 
             <div class="CategoryTable" id="category-table">
-                <!-- Placeholder for the category table -->
+                
             </div>
         </div>
 
