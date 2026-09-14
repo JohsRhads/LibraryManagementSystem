@@ -26,8 +26,37 @@ const renderCategoryPage = () => {
     `;
 };
 
-const generateCategoryTable = () => {
+const generateCategoryTable = (categories) => {
+    const table = document.getElementById("category-table");
 
-}
+    let rows = "";
+    categories.forEach((category) => {
+        rows += `
+            <tr>
+                <td>${category.id}</td>
+                <td>${category.name}</td>
+                <td>
+                    <button class="edit-btn" data-id="${category.id}">Edit</button>
+                    <button class="delete-btn" data-id="${category.id}">Delete</button>
+                </td>
+            </tr>
+        `;
+    });
 
-export { renderCategoryPage };
+    table.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${rows}
+            </tbody>
+        </table>
+    `;
+};
+
+export { renderCategoryPage, generateCategoryTable };
